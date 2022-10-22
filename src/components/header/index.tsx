@@ -1,6 +1,7 @@
 import React from 'react';
-
 import logoImg from '../../assets/logo.svg';
+
+import type { THeaderProps } from './types';
 
 import { 
 	StyledHeader, 
@@ -8,16 +9,23 @@ import {
 	StyledButton,
 } from './styles';
 
-export const Header = () => {
+export const Header = ({
+	onOpenNewTransactionModal
+}: THeaderProps) => {
 	return (
 		<StyledHeader>
 			<StyledContent>
 				<img src={logoImg} alt="dt money" />		
 
-				<StyledButton type='button'>
-        Nova Tansação
+				<StyledButton 
+					type='button'
+					onClick={onOpenNewTransactionModal}
+				>
+          New Transaction
 				</StyledButton>
 			</StyledContent>
+
+
 		</StyledHeader>
 	);
 };

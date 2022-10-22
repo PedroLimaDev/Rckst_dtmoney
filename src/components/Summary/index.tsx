@@ -10,15 +10,15 @@ export const Summary = () => {
 		<StyledSummary>
 			<StyledCard>
 				<header>
-					<p>Entradas</p>
-					<img src={IncomeImg} alt="Entradas" />
+					<p>Income</p>
+					<img src={IncomeImg} alt="Income" />
 				</header>
 				<strong>R$1000.00</strong>
 			</StyledCard>
 			<StyledCard>
 				<header>
-					<p>Saídas</p>
-					<img src={OutcomeImg} alt="Saídas" />
+					<p>Outcome</p>
+					<img src={OutcomeImg} alt="Outcome" />
 				</header>
 				<strong>-R$500.00</strong>
 			</StyledCard>
