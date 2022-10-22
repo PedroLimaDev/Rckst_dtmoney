@@ -1,1 +1,2 @@
-export { default as Header } from './header';
+export { Header } from './Header';
+export { Dashboard } from './Dashboard';
