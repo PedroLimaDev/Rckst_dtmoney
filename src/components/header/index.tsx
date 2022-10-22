@@ -1,13 +1,13 @@
-import React from 'react';
-import logoImg from '../../assets/logo.svg';
+import React from "react";
+import logoImg from "../../assets/logo.svg";
 
-import type { THeaderProps } from './types';
+import type { THeaderProps } from "./types";
 
 import { 
 	StyledHeader, 
 	StyledContent,
 	StyledButton,
-} from './styles';
+} from "./styles";
 
 export const Header = ({
 	onOpenNewTransactionModal
@@ -18,7 +18,7 @@ export const Header = ({
 				<img src={logoImg} alt="dt money" />		
 
 				<StyledButton 
-					type='button'
+					type="button"
 					onClick={onOpenNewTransactionModal}
 				>
           New Transaction

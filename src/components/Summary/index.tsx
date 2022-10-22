@@ -1,9 +1,9 @@
-import React from 'react';
-import IncomeImg from '../../assets/income.svg';
-import OutcomeImg from '../../assets/outcome.svg';
-import TotalImg from '../../assets/total.svg';
+import React from "react";
+import IncomeImg from "../../assets/income.svg";
+import OutcomeImg from "../../assets/outcome.svg";
+import TotalImg from "../../assets/total.svg";
 
-import { StyledSummary, StyledCard } from './styles';
+import { StyledSummary, StyledCard } from "./styles";
 
 export const Summary = () => {
 	return (
@@ -22,7 +22,7 @@ export const Summary = () => {
 				</header>
 				<strong>-R$500.00</strong>
 			</StyledCard>
-			<StyledCard className='highlight-background'>
+			<StyledCard className="highlight-background">
 				<header>
 					<p>Total</p>
 					<img src={TotalImg} alt="Total" />

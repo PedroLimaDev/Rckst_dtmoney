@@ -1,4 +1,4 @@
 export type TNewTransactionModalProps = {
-  isNewTransactionModalOpen: boolean;
-  handleCloseNewTransactionModal: () => void;
+  isOpen: boolean;
+  onRequestClose: () => void;
 }

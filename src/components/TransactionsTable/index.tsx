@@ -1,11 +1,11 @@
-import React from 'react';
-import { api } from '../../services/api';
+import React from "react";
+import { api } from "../../services/api";
 
-import { StyledTransactionsTable } from './styles';
+import { StyledTransactionsTable } from "./styles";
 
 export const TransactionsTable = () => {
 	React.useEffect(() => {
-		api.get('/transactions')
+		api.get("/transactions")
 			.then(response => console.log(response.data));
 	}, []);
 
@@ -22,13 +22,13 @@ export const TransactionsTable = () => {
 				<tbody>
 					<tr>
 						<td>Website Development</td>
-						<td className='deposit'>R$12.000</td>
+						<td className="deposit">R$12.000</td>
 						<td>Development</td>
 						<td>20/02/2022</td>
 					</tr>
 					<tr>
 						<td>Rent</td>
-						<td className='withdrawal'>- R$12.000</td>
+						<td className="withdrawal">- R$12.000</td>
 						<td>Home Expenses</td>
 						<td>20/02/2022</td>
 					</tr>

@@ -1,20 +1,56 @@
-import React from 'react';
-import Modal from 'react-modal';
+import React from "react";
+import Modal from "react-modal";
+import closeImg from "../../assets/close.svg";
 
-import { TNewTransactionModalProps } from './types';
+import { StyledForm } from "./styles";
 
-Modal.setAppElement('#root');
+import { TNewTransactionModalProps } from "./types";
+
+Modal.setAppElement("#root");
 
 export const NewTransactionModal = ({
-	isNewTransactionModalOpen,
-	handleCloseNewTransactionModal,
+	isOpen,
+	onRequestClose,
 }: TNewTransactionModalProps) => {
 	return (
 		<Modal
-			isOpen={isNewTransactionModalOpen}
-			onRequestClose={handleCloseNewTransactionModal}
+			isOpen={isOpen}
+			onRequestClose={onRequestClose}
+			overlayClassName="react-modal-overlay"
+			className="react-modal-content"
 		>
-			<h2>Register Transaction</h2>
+			<button
+				type="button"
+				onClick={onRequestClose}
+				className="react-modal-close"
+			>
+				<img src={closeImg} alt="Close Modal" />
+			</button>
+
+			<StyledForm>
+				<h2>Register Transaction</h2>
+
+				<input
+					type="text"
+					placeholder="Title"
+				/>
+
+				<input
+					type="number"
+					placeholder="Value"
+				/>
+
+				<input
+					type="text"
+					placeholder="Category"
+				/>
+
+				<button
+					type="submit"
+				>
+					Create
+				</button>
+			</StyledForm>
 		</Modal>
 	);
 };
