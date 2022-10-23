@@ -1,4 +1,6 @@
 import React from "react";
+import { TransactionsContext } from "../../contexts/TransactionsContext";
+
 import IncomeImg from "../../assets/income.svg";
 import OutcomeImg from "../../assets/outcome.svg";
 import TotalImg from "../../assets/total.svg";
@@ -6,6 +8,8 @@ import TotalImg from "../../assets/total.svg";
 import { StyledSummary, StyledCard } from "./styles";
 
 export const Summary = () => {
+	const { transactionsList } = React.useContext(TransactionsContext);
+
 	return (
 		<StyledSummary>
 			<StyledCard>

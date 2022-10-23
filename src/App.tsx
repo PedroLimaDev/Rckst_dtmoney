@@ -2,7 +2,7 @@ import React from "react";
 
 import { Dashboard, Header, NewTransactionModal } from "./components";
 
-import { TransactionsContext } from "./contexts/TransactionsContext";
+import { TransactionsProvider } from "./contexts/TransactionsContext";
 
 import { GlobalStyle } from "./styles/global";
 
@@ -18,7 +18,7 @@ export function App() {
 	};
 
 	return (
-		<TransactionsContext.Provider value={[]}>
+		<TransactionsProvider>
 			<Header onOpenNewTransactionModal={handleOpenNewTransactionModal} />
 			<Dashboard />
 			<GlobalStyle />
@@ -27,6 +27,6 @@ export function App() {
 				isOpen={isNewTransactionModalOpen}
 				onRequestClose={handleCloseNewTransactionModal}
 			/>
-		</TransactionsContext.Provider>
+		</TransactionsProvider>
 	);
 }
