@@ -1,5 +1,5 @@
 import React from "react";
-import { TransactionsContext } from "../../contexts/TransactionsContext";
+import { useTransactions } from "../../hooks/useTransactions";
 
 import IncomeImg from "../../assets/income.svg";
 import OutcomeImg from "../../assets/outcome.svg";
@@ -8,7 +8,25 @@ import TotalImg from "../../assets/total.svg";
 import { StyledSummary, StyledCard } from "./styles";
 
 export const Summary = () => {
-	const { transactionsList } = React.useContext(TransactionsContext);
+	const { transactionsList } = useTransactions();
+
+	const summary = transactionsList.reduce((acc, transaction) => {
+		if (transaction.type === "deposit") {
+			acc.deposits += transaction.amount;
+			acc.total += transaction.amount;
+		}
+
+		if (transaction.type === "withdrawal") {
+			acc.withdrawals -= transaction.amount;
+			acc.total -= transaction.amount;
+		}
+
+		return acc;
+	}, {
+		deposits: 0,
+		withdrawals: 0,
+		total: 0,
+	});
 
 	return (
 		<StyledSummary>
@@ -17,21 +35,36 @@ export const Summary = () => {
 					<p>Income</p>
 					<img src={IncomeImg} alt="Income" />
 				</header>
-				<strong>R$1000.00</strong>
+				<strong>
+					{new Intl.NumberFormat("pr-BR", {
+						style: "currency",
+						currency: "BRL"
+					}).format(summary.deposits)}
+				</strong>
 			</StyledCard>
 			<StyledCard>
 				<header>
 					<p>Outcome</p>
 					<img src={OutcomeImg} alt="Outcome" />
 				</header>
-				<strong>-R$500.00</strong>
+				<strong>
+					{new Intl.NumberFormat("pr-BR", {
+						style: "currency",
+						currency: "BRL"
+					}).format(summary.withdrawals)}
+				</strong>
 			</StyledCard>
 			<StyledCard className="highlight-background">
 				<header>
 					<p>Total</p>
 					<img src={TotalImg} alt="Total" />
 				</header>
-				<strong>R$500.00</strong>
+				<strong>
+					{new Intl.NumberFormat("pr-BR", {
+						style: "currency",
+						currency: "BRL"
+					}).format(summary.total)}
+				</strong>
 			</StyledCard>
 		</StyledSummary>
 	);

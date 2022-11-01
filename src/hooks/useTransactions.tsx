@@ -1,5 +1,6 @@
-import React, { createContext } from "react";
+import React, { createContext, useContext } from "react";
 import { api } from "../services/api";
+import { isNil } from "ramda";
 
 import {
 	TTransaction,
@@ -8,7 +9,7 @@ import {
 	TTransactionContextData,
 } from "./types";
 
-export const TransactionsContext = createContext<TTransactionContextData>(
+const TransactionsContext = createContext<TTransactionContextData>(
   {} as TTransactionContextData
 );
 
@@ -20,8 +21,20 @@ export const TransactionsProvider = ({ children }: TTransactionsProviderProps) =
 			.then(response => setTransactionsList(response.data.transactions));
 	}, []);
 
-	const createTransaction = (transaction: TCreateTransactionDto) => {
-		api.post("/transactions", transaction);
+	const createTransaction = async (transactionInput: TCreateTransactionDto) => {
+		const response = await api.post("/transactions", {
+			...transactionInput,
+			createdAt: new Date(),
+		});
+
+		if (isNil(response)) return;
+
+		const { transaction } = response.data;
+
+		setTransactionsList([
+			...transactionsList,
+			transaction,
+		]);
 	};
 
 	const contextProps: TTransactionContextData = {
@@ -34,4 +47,8 @@ export const TransactionsProvider = ({ children }: TTransactionsProviderProps) =
 			{children}
 		</TransactionsContext.Provider>
 	);
+};
+
+export const useTransactions = () => {
+	return useContext(TransactionsContext);
 };

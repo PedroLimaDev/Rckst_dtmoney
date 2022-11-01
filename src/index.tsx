@@ -25,7 +25,7 @@ createServer({
 					id: 2,
 					title: "Rent",
 					type: "withdrawal",
-					amount: -5000,
+					amount: 5000,
 					category: "Home Expenses",
 					createdAt: new Date(),
 				}

@@ -2,7 +2,7 @@ import React from "react";
 
 import { Dashboard, Header, NewTransactionModal } from "./components";
 
-import { TransactionsProvider } from "./contexts/TransactionsContext";
+import { TransactionsProvider } from "./hooks/useTransactions";
 
 import { GlobalStyle } from "./styles/global";
 
@@ -23,10 +23,12 @@ export function App() {
 			<Dashboard />
 			<GlobalStyle />
 
-			<NewTransactionModal
-				isOpen={isNewTransactionModalOpen}
-				onRequestClose={handleCloseNewTransactionModal}
-			/>
+			{isNewTransactionModalOpen && (
+				<NewTransactionModal
+					isOpen={isNewTransactionModalOpen}
+					onRequestClose={handleCloseNewTransactionModal}
+				/>
+			)}
 		</TransactionsProvider>
 	);
 }

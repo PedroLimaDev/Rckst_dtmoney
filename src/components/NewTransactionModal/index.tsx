@@ -1,6 +1,6 @@
 import React from "react";
 import Modal from "react-modal";
-import { TransactionsContext } from "../../contexts/TransactionsContext";
+import { useTransactions } from "../../hooks/useTransactions";
 
 import closeImg from "../../assets/close.svg";
 import incomeImg from "../../assets/income.svg";
@@ -20,7 +20,7 @@ export const NewTransactionModal = ({
 	isOpen,
 	onRequestClose,
 }: TNewTransactionModalProps) => {
-	const { createTransaction } = React.useContext(TransactionsContext);
+	const { createTransaction } = useTransactions();
 
 	const [title, setTitle] = React.useState("");
 	const [amount, setAmount] = React.useState(0);
@@ -28,15 +28,26 @@ export const NewTransactionModal = ({
 
 	const [type, setType] = React.useState("deposit");
 
-	const handleCreateNewTransaction = (event: React.FormEvent) => {
+	const resetData = () => {
+		// Could conditional render, but React-Modal does not like it, keeps outputting errors
+		setTitle("");
+		setAmount(0);
+		setCategory("");
+		setType("deposit");
+	};
+
+	const handleCreateNewTransaction = async (event: React.FormEvent) => {
 		event.preventDefault();
 
-		createTransaction({
+		await createTransaction({
 			title,
 			amount,
 			category,
 			type,
 		});
+
+		resetData();
+		onRequestClose();
 	};
 
 	return (

@@ -3,8 +3,8 @@ import logoImg from "../../assets/logo.svg";
 
 import type { THeaderProps } from "./types";
 
-import { 
-	StyledHeader, 
+import {
+	StyledHeader,
 	StyledContent,
 	StyledButton,
 } from "./styles";
@@ -15,9 +15,9 @@ export const Header = ({
 	return (
 		<StyledHeader>
 			<StyledContent>
-				<img src={logoImg} alt="dt money" />		
+				<img src={logoImg} alt="dt money" />
 
-				<StyledButton 
+				<StyledButton
 					type="button"
 					onClick={onOpenNewTransactionModal}
 				>

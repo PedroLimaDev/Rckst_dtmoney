@@ -17,5 +17,5 @@ export type TCreateTransactionDto = Omit<TTransaction, "id" | "createdAt">
 
 export type TTransactionContextData = {
   transactionsList: TTransaction[];
-  createTransaction: (transaction: TCreateTransactionDto) => void;
+  createTransaction: (transaction: TCreateTransactionDto) => Promise<void>;
 }
